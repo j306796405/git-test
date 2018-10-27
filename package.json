@@ -6,9 +6,14 @@
   "dependencies": {
     "validate-commit-msg": "^2.14.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "prettier": "1.14.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -21,6 +26,7 @@
   },
   "homepage": "https://github.com/j306796405/git-test#readme",
   "config": {
+    "validate-commit-msg": {},
     "ghooks": {
       "pre-commit": "gulp lint",
       "commit-msg": "validate-commit-msg",
@@ -28,5 +34,12 @@
       "post-merge": "npm install",
       "post-rewrite": "npm install"
     }
+  },
+  "lint-staged": {
+    "app/**/*.{js,vue}": [
+      "prettier --tab-width 4 --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
