@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "readme on master hello world from master aaa bbb",
   "main": "index.js",
-  "dependencies": {
-    "validate-commit-msg": "^2.14.0"
-  },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "prettier": "1.14.3"
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "ghooks": "^2.0.0",
+    "standard-version": "^4.2.0",
+    "validate-commit-msg": "^2.14.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "lint-staged"
+    "lint": "node build/lint.js",
+    "gitcz": "node build/git-cz.js"
   },
   "repository": {
     "type": "git",
@@ -26,13 +26,10 @@
   },
   "homepage": "https://github.com/j306796405/git-test#readme",
   "config": {
-    "validate-commit-msg": {},
     "ghooks": {
-      "pre-commit": "gulp lint",
+      "pre-commit": "npm run lint",
       "commit-msg": "validate-commit-msg",
-      "pre-push": "make test",
-      "post-merge": "npm install",
-      "post-rewrite": "npm install"
+      "post-merge": "node build/release.js"
     }
   },
   "lint-staged": {
