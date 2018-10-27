@@ -1,0 +1,32 @@
+{
+  "name": "git-test",
+  "version": "1.0.0",
+  "description": "readme on master hello world from master aaa bbb",
+  "main": "index.js",
+  "dependencies": {
+    "validate-commit-msg": "^2.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j306796405/git-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j306796405/git-test/issues"
+  },
+  "homepage": "https://github.com/j306796405/git-test#readme",
+  "config": {
+    "ghooks": {
+      "pre-commit": "gulp lint",
+      "commit-msg": "validate-commit-msg",
+      "pre-push": "make test",
+      "post-merge": "npm install",
+      "post-rewrite": "npm install"
+    }
+  }
+}
